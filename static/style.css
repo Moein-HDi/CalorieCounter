@@ -1,0 +1,70 @@
+/* fonts */
+@font-face {
+  font-family: "Shabnam";
+  src: url('fonts/shabnam/Farsi-Digits/Shabnam-FD.eot') format('eot'),
+    /* IE6–8 */
+    url('fonts/shabnam/Farsi-Digits/Shabnam-FD.woff') format('woff'),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('fonts/shabnam/Farsi-Digits/Shabnam-FD.ttf') format('truetype');
+  /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/* setting main colors */
+:root {
+  --color-primary: teal;
+  --color-secondary: rgb(0, 104, 104);
+  --color-hover: rgb(234, 234, 234);
+}
+
+/* setting main font */
+:root {
+  --font-default: "Shabnam";
+}
+
+
+/* ----------------------------------- */
+
+body {
+  font-family: var(--font-default);
+}
+
+nav {
+  background-color: var(--color-primary);
+}
+
+.loginbtn {
+  border-color: white;
+  color: white;
+  margin-left: 10px;
+}
+
+.loginbtn:hover,
+.loginbtn:focus:hover {
+  color: var(--color-hover);
+  border-color: var(--color-hover);
+}
+
+.registerbtn {
+  background: white;
+  color: var(--color-primary);
+}
+
+.registerbtn:hover,
+.registerbtn:focus:hover {
+  background-color: var(--color-hover);
+  color: var(--color-primary);
+}
+
+.herobtn {
+  color: white;
+  background: var(--color-primary);
+}
+
+.herobtn:hover,
+.herobtn:focus:hover {
+  color: white;
+  background: var(--color-secondary);
+}

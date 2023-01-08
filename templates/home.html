@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- hero section -->
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="{% static 'assets/hero.jpg' %}"
+                     class="d-block mx-lg-auto img-fluid"
+                     alt="Bootstrap Themes"
+                     loading="lazy"
+                     width="700"
+                     height="500"/>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold mb-3">کالری شمار آنلاین</h1>
+                <p class="lead">
+                    مقدار کالری مصرفی روزانه خود را به آسانی محاسبه و کنترل کنید. هدف روزانه خود را تعیین کنید و غذا های مصرفی خود را در پروفایل خود ثبت کنید.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <button type="button" class="herobtn btn btn-lg px-4 me-md-2">شروع کن</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
