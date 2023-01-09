@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container mt-5 w-25">
+        <div class="card shadow">
+            <div class="card-body text-center">
+                <img src="{% static 'assets/hero.jpg' %}"
+                     class="d-block mx-lg-auto img-fluid"
+                     alt="caloriecounter"
+                     loading="lazy"
+                     width="700"
+                     height="500"/></br>
+                <h2><i class="bi-file-person"></i> درباره من</h2>
+                
+                    <strong>ساخته شده توسط:</strong> معین هدایتی
+                </br>
+                    <strong>شماره دانشجویی:</strong> 980122746
+                </br>
+                    <strong>استاد راهنما:</strong> دکتر آقا بزرگی
+                
+            </div>
+        </div>
+    </div>
+{% endblock content %}

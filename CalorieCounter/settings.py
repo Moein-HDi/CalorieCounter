@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # local apps
     'pages',
     'accounts',
+    'tracker',
     #3rd party
     'widget_tweaks',
 ]
