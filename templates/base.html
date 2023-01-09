@@ -22,7 +22,7 @@
     <div class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-dark" data-bs-theme="dark">
         <div class="container-xl py-1">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="{% url 'home' %}">
             <i class="bi-egg"></i>
           کالری شمار آنلاین</a>
           <button class="navbar-toggler"
@@ -37,14 +37,19 @@
           <div class="collapse navbar-collapse" id="navbarsExample07XL">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="#">صفحه اصلی</a>
+                <a class="nav-link" href="{% url 'home' %}">صفحه اصلی</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">درباره من</a>
               </li>
             </ul>
-            <a href="#" class="btn loginbtn mx-3"><i class="bi-box-arrow-in-right"></i> ورود</a>
-            <a href="#" class="btn registerbtn"><i class="bi-person-plus"></i> ثبت نام</a>
+            {% if user.is_authenticated %}
+              <a href="{% url 'logout' %}" class="btn loginbtn mx-3"><i class="bi-box-arrow-left"></i> خروج از حساب</a>
+              <a href="#" class="btn registerbtn"><i class="bi-person-circle"></i> پروفایل من</a>
+            {% else %}
+              <a href="{% url 'login' %}" class="btn loginbtn mx-3"><i class="bi-box-arrow-in-right"></i> ورود</a>
+              <a href="{% url 'signup' %}" class="btn registerbtn"><i class="bi-person-plus"></i> ثبت نام</a>
+            {% endif %}
           </div>
         </div>
       </nav>
