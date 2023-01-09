@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # local apps
     'pages',
     'accounts',
+    #3rd party
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +130,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
