@@ -15,11 +15,14 @@ class fooditem(models.Model):
 
 class food_eaten(models.Model):
     meals = (
-        ('breakfast', 'صبحانه'),
-        ('lunch', 'نهار'),
-        ('dinner', 'شام'),
+        ('صبحانه', 'صبحانه'),
+        ('نهار', 'نهار'),
+        ('شام', 'شام'),
     )
-    name = models.ManyToManyField(fooditem)
+    name = models.ForeignKey(fooditem, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
     meal = models.CharField(max_length=50, choices=meals)
     person = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str('{name} ({ml})'.format(name=self.name, ml=self.meal))
