@@ -50,7 +50,7 @@
             </ul>
             {% if user.is_authenticated %}
               <a href="{% url 'logout' %}" class="btn loginbtn mx-3"><i class="bi-box-arrow-left"></i> خروج از حساب</a>
-              <a href="#" class="btn registerbtn"><i class="bi-person-circle"></i> سلام {{ user.username }}!</a>
+              <a href="{% url 'profile' %}" class="btn registerbtn"><i class="bi-person-circle"></i> سلام {{ user.username }}!</a>
             {% else %}
               <a href="{% url 'login' %}" class="btn loginbtn mx-3"><i class="bi-box-arrow-in-right"></i> ورود</a>
               <a href="{% url 'signup' %}" class="btn registerbtn"><i class="bi-person-plus"></i> ثبت نام</a>

@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
 {% block content %}
-    <div class="container mt-5 w-50">
+    <div class="container mt-5 w-100">
         <div class="card shadow">
             <div class="card-body">
-                <h2 class="text-center">ورود به حساب کاربری</h2>
+                <h3 class="text-center">ورود به حساب کاربری</h3>
                 <form method="post">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
@@ -18,7 +18,7 @@
                         {{ form.password|add_class:"form-control mb-2" }}
                         {{ form.password.errors }}
                     </div>
-                    <button type="submit" class="w-100 mt-3 btn btn-lg btn-success">ورود</button>
+                    <button type="submit" class="w-100 mt-3 btn btn-success">ورود</button>
                 </form>
             </div>
         </div>

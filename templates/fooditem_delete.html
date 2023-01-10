@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container mt-5 w-50">
+    <div class="container mt-5 w-75">
         <div class="card shadow">
             <div class="card-body">
-                <h2 class="text-center">حذف غذا</h2>
+                <h3 class="text-center">حذف غذا</h3>
                 <form action="" method="post">
                     {% csrf_token %}
                     <p>آیا از حذف "{{ fooditem.name }}" مطمئنید؟</p>

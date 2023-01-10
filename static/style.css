@@ -10,6 +10,17 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "ShabnamBold";
+  src: url('fonts/shabnam/Farsi-Digits/Shabnam-Bold-FD.eot') format('eot'),
+    /* IE6–8 */
+    url('fonts/shabnam/Farsi-Digits/Shabnam-Bold-FD.woff') format('woff'),
+    /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('fonts/shabnam/Farsi-Digits/Shabnam-Bold-FD.ttf') format('truetype');
+  /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+  font-weight: bold;
+  font-style: normal;
+}
 
 
 /* setting main colors */
@@ -22,6 +33,7 @@
 /* setting main font */
 :root {
   --font-default: "Shabnam";
+  --font-bold:  "ShabnamBold";
 }
 
 
@@ -29,6 +41,10 @@
 
 body {
   font-family: var(--font-default);
+}
+
+.blackbold {
+  font-family: var(--font-bold);
 }
 
 nav {

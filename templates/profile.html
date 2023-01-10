@@ -1,21 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container mt-5 w-50">
+    <div class="container mt-5 w-100">
         <div class="card shadow">
             <div class="card-body">
-                <h2 class="text-center">تاریخچه وعده های غذایی شما</h2>
-                <a href="{% url 'foodeaten_new' %}"
-                        class="w-100 mt-3 btn btn-lg btn-success">افزودن وعده غذایی جدید</a>
+                <h3 class="text-center">خوش آمدید، {{ user.username }}!</h3>
+                <div class="text-muted text-center mt-5">کالری مصرفی امروز شما:</div>
+                <h1 class="text-center blackbold">{{ total_cal_today }}/{{ user_goal }}</h1>
+                <div class="progress" style="height: 2rem;" dir="ltr">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{ goal_percent }}%;" aria-valuenow="{{ total_cal_today }}" aria-valuemin="0" aria-valuemax="{{ user_goal }}">{{ goal_percent }}%</div>
+                  </div>
+                <a href="{% url 'goal_edit' %}" class="w-100 mt-3 btn btn-warning mt-5">تغییر کالری روزانه هدف</a>
                 
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                              <th scope="col">نام غذا</th>
-                              <th scope="col">وعده غذایی</th>
-                              <th scope="col">تاریخ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5 w-100">
+        <div class="card shadow">
+            <div class="card-body">
+                <h3 class="text-center">وعده های غذایی امروز شما</h3>
+                <a href="{% url 'foodeaten_new' %}" class="w-100 mt-3 btn btn-success">افزودن وعده غذایی جدید</a>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">نام غذا</th>
+                            <th scope="col">وعده غذایی</th>
+                            <th scope="col">تاریخ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         {% for food_eaten in FoodEatenList %}
                             <tr>
                                 <td>{{ food_eaten.name }}</td>
@@ -25,13 +37,13 @@
                                     <form method="post">
                                         {% csrf_token %}
                                         <a href="{% url 'foodeaten_delete' food_eaten.pk %}"
-                                        class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                           class="btn btn-danger"><i class="bi bi-trash"></i></a>
                                     </form>
                                 </td>
-                            </tr>                      
+                            </tr>
                         {% endfor %}
-                        </tbody>
-                    </table>                
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

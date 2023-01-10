@@ -64,14 +64,21 @@ class FoodItemDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 
 def ProfileView(request):
-    # user = CustomUser.objects.get(id=request.user.id)
-    # user_goal = user.calorie_goal
-    # user_consumed_today =
+    current_user = CustomUser.objects.get(id=request.user.id)
+    user_goal = current_user.calorie_goal
+
     UserFoodEatenList = food_eaten.objects.filter(person=request.user)
     TodayFoodEatenList = UserFoodEatenList.filter(date=date.today())
-
+    total_cal_today = 0
+    for food in TodayFoodEatenList:
+        total_cal_today += food.name.calorie
+    
+    goal_percent = int(total_cal_today/user_goal*100)
     context = {
         'FoodEatenList': TodayFoodEatenList,
+        'user_goal': int(user_goal),
+        'total_cal_today': int(total_cal_today),
+        'goal_percent': goal_percent,
     }
     return render(request, 'profile.html', context)
 
@@ -87,7 +94,8 @@ def FoodEatenCreateView(request):
             name = form.cleaned_data.get('name')
             meal = form.cleaned_data.get('meal')
             person = form.cleaned_data.get('person')
-            eatfood = food_eaten.objects.create(name=name, meal=meal, person=person)
+            eatfood = food_eaten.objects.create(
+                name=name, meal=meal, person=person)
             eatfood.save()
             return redirect('/manage/profile')
         else:
@@ -100,3 +108,14 @@ class FoodEatenDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = food_eaten
     template_name = 'foodeaten_delete.html'
     success_url = reverse_lazy('profile')
+
+
+@login_required(login_url='login')
+def EditGoalView(request):
+    if request.method == 'POST':
+        user = CustomUser.objects.get(id=request.user.id)
+        user.calorie_goal = request.POST.get('calorie_goal')
+        user.save()
+        return redirect('/manage/profile')
+
+    return render(request, 'goal_edit.html')
