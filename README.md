@@ -1,4 +1,4 @@
-# CalorieCounter
+# CalorieCounter (in development)
 A django project for a calorie counter web application
 
 ## How does it work?
