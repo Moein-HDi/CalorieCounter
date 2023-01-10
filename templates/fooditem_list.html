@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-5 w-50">
+        <div class="card shadow">
+            <div class="card-body">
+                <h2 class="text-center">لیست غذا های شما</h2>
+                <a href="{% url 'fooditem_new' %}"
+                        class="w-100 mt-3 btn btn-lg btn-success">افزودن غذای جدید</a>
+                
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                              <th scope="col">نام غذا</th>
+                              <th scope="col">میزان کالری</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for fooditem in FoodList %}
+                            <tr>
+                                <td>{{ fooditem.name }}</td>
+                                <td>{{ fooditem.calorie }}</td>
+                                <td>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <a href="{% url 'fooditem_delete' fooditem.pk %}"
+                                        class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                    </form>
+                                </td>
+                            </tr>                      
+                        {% endfor %}
+                        </tbody>
+                    </table>                
+            </div>
+        </div>
+    </div>
+{% endblock content %}

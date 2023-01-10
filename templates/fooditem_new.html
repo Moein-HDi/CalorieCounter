@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <div class="container mt-5 w-50">
+        <div class="card shadow">
+            <div class="card-body">
+                <h2 class="text-center">افزودن غذای جدید به لیست</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <select name="person" required="" id="id_person" hidden="True">
+                        <option value="{{user.id}}" selected="">{{user.username}}</option>
+                      </select>
+                    <div class="form-group">
+                        <label for="{{ form.name.id_for_label }}">نام غذا:</label>
+                        {{ form.name|add_class:"form-control mb-2" }}
+                        {{ form.name.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.calorie.id_for_label }}">مقدار کالری در هر وعده:</label>
+                        {{ form.calorie|add_class:"form-control mb-2" }}
+                        {{ form.calorie.errors }}
+                    </div>
+                    
+                    <button type="submit" class="w-100 mt-3 btn btn-lg btn-success">افزودن غذای جدید</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
