@@ -14,6 +14,11 @@
                         {{ form.username.errors }}
                     </div>
                     <div class="form-group">
+                        <label for="{{ form.calorie_goal.id_for_label }}">کالری روزانه مصرفی هدف:</label>
+                        {{ form.calorie_goal|add_class:"form-control mb-2" }}
+                        {{ form.calorie_goal.errors }}
+                    </div>
+                    <div class="form-group">
                         <label for="{{ form.password1.id_for_label }}">کلمه عبور:</label>
                         {{ form.password1|add_class:"form-control mb-2" }}
                         {{ form.password1.errors }}

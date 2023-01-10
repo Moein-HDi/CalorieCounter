@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+    <div class="container mt-5 w-50">
+        <div class="card shadow">
+            <div class="card-body">
+                <h2 class="text-center">تغییر کالری مصرفی روزانه هدف</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <div class="form-group">
+                        <label for="{{ form.calorie_goal.id_for_label }}">کالری روزانه مصرفی هدف:</label>
+                        {{ form.calorie_goal|add_class:"form-control mb-2" }}
+                        {{ form.calorie_goal.errors }}
+                    </div>
+                    <button type="submit" class="w-100 mt-3 btn btn-lg btn-success">ثبت هدف جدید</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
