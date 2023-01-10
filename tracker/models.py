@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from accounts.models import CustomUser
 
 # class Person(models.Model):
 #     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 class fooditem(models.Model):
     name = models.CharField(max_length=200)
     calorie = models.DecimalField(max_digits=5, decimal_places=2, default=0, blank=True)
-    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    person = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.name + ' (' + self.calorie + ' cal)')
@@ -25,7 +25,7 @@ class food_eaten(models.Model):
     name = models.ManyToManyField(fooditem)
     date = models.DateField(auto_now_add=True)
     meal = models.CharField(max_length=50, choices=meals)
-    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    person = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
 
 
