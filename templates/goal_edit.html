@@ -7,12 +7,14 @@
                 <h2 class="text-center">تغییر کالری مصرفی روزانه هدف</h2>
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.non_field_errors }}
+                    {% comment %} {{ form.non_field_errors }}
                     <div class="form-group">
                         <label for="{{ form.calorie_goal.id_for_label }}">کالری روزانه مصرفی هدف:</label>
                         {{ form.calorie_goal|add_class:"form-control mb-2" }}
+                        
                         {{ form.calorie_goal.errors }}
-                    </div>
+                    </div> {% endcomment %}
+                    <input type="number" name="calorie_goal" value="0.00" step="0.01" id="id_calorie_goal">
                     <button type="submit" class="w-100 mt-3 btn btn-lg btn-success">ثبت هدف جدید</button>
                 </form>
             </div>
