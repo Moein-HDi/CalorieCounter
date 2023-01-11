@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import date
+from datetime import timedelta
 
 
 @login_required(login_url='login')
@@ -63,15 +64,29 @@ class FoodItemDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy('fooditem_list')
 
 
+@login_required(login_url='login')
 def ProfileView(request):
     current_user = CustomUser.objects.get(id=request.user.id)
     user_goal = current_user.calorie_goal
 
     UserFoodEatenList = food_eaten.objects.filter(person=request.user)
     TodayFoodEatenList = UserFoodEatenList.filter(date=date.today())
+    YesterdayFoodEatenList = UserFoodEatenList.filter(date=(date.today()-timedelta(days=1)))
+    
+    total_cal_alltime = 0
     total_cal_today = 0
+    total_cal_yesterday = 0
+    for food in UserFoodEatenList:
+        total_cal_alltime+= food.name.calorie
     for food in TodayFoodEatenList:
         total_cal_today += food.name.calorie
+    for food in YesterdayFoodEatenList:
+        total_cal_yesterday += food.name.calorie
+    
+
+    cal_compared = int(total_cal_today - total_cal_yesterday)
+    if cal_compared > 0:
+        cal_compared_to_yesterday = "+%d" %cal_compared
     
     goal_percent = int(total_cal_today/user_goal*100)
     context = {
@@ -79,6 +94,8 @@ def ProfileView(request):
         'user_goal': int(user_goal),
         'total_cal_today': int(total_cal_today),
         'goal_percent': goal_percent,
+        'cal_compared': cal_compared_to_yesterday,
+        'cal_alltime': int(total_cal_alltime),
     }
     return render(request, 'profile.html', context)
 

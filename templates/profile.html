@@ -1,50 +1,109 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="container mt-5 w-100">
-        <div class="card shadow">
+        <div class="card shadow-sm">
             <div class="card-body">
-                <h3 class="text-center">خوش آمدید، {{ user.username }}!</h3>
+                <h3 class="text-center mb-4">
+                    خوش آمدید، {{ user.username }}! <i class="bi bi-emoji-smile"></i>
+                </h3>
+                <div class="row row-cols-1 row-cols-md-3 text-center">
+                    <div class="col d-flex flex-column">
+                        <div class="card m-2 rounded-3 shadow-sm flex-grow-1">
+                            <div class="card-header py-3">
+                                <h5 class="my-0 fw-normal">کل کالری مصرف شده شما تا اکنون</h5>
+                            </div>
+                            <div class="card-body">
+                                    <i class="bi bi-bar-chart-fill fs-2"></i>
+                                <h1 class="card-title pricing-card-title">
+                                    {{ cal_alltime }}<small class="text-muted fw-light"> کالری</small>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex flex-column">
+                        <div class="card m-2 rounded-3 shadow-sm flex-grow-1">
+                            <div class="card-header py-3">
+                                <h5 class="my-0 fw-normal">کالری مصرف شده امروز شما</h5>
+                            </div>
+                            <div class="card-body">
+                                    <i class="bi bi-star-fill fs-2"></i>
+                                <h1 class="card-title pricing-card-title">
+                                    {{ total_cal_today }}<small class="text-muted fw-light">/{{ user_goal }}</small>
+                                </h1>
+                                <div class="progress my-3 shadow-sm" style="height: 2rem;" dir="ltr">
+                                    <div class="progress-bar progress-bar-striped bg-success"
+                                         role="progressbar"
+                                         style="width: {{ goal_percent }}%"
+                                         aria-valuenow="{{ total_cal_today }}"
+                                         aria-valuemin="0"
+                                         aria-valuemax="{{ user_goal }}">
+                                        {{ goal_percent }}%
+                                    </div>
+                                </div>
+                                <a href="{% url 'goal_edit' %}"
+                                   type="button"
+                                   class="w-100 btn btn-warning"><i class="bi bi-pencil-square"></i> تغییر کالری روزانه هدف</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex flex-column">
+                        <div class="card m-2 rounded-3 shadow-sm flex-grow-1">
+                            <div class="card-header py-3">
+                                <h5 class="my-0 fw-normal">کالری مصرفی امروز شما در مقایسه با دیروز</h5>
+                            </div>
+                            <div class="card-body">
+                                    <i class="bi bi-graph-up-arrow fs-2"></i>                              
+                                <h1 class="card-title pricing-card-title">
+                                    <span dir="ltr">{{ cal_compared }}</span><small class="text-muted fw-light"> کالری</small>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    {% comment %} <h3 class="text-center">
+                    خوش آمدید، {{ user.username }}! <i class="bi bi-emoji-smile"></i>
+                </h3>
                 <div class="text-muted text-center mt-5">کالری مصرفی امروز شما:</div>
                 <h1 class="text-center blackbold">{{ total_cal_today }}/{{ user_goal }}</h1>
                 <div class="progress" style="height: 2rem;" dir="ltr">
-                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{ goal_percent }}%;" aria-valuenow="{{ total_cal_today }}" aria-valuemin="0" aria-valuemax="{{ user_goal }}">{{ goal_percent }}%</div>
-                  </div>
-                <a href="{% url 'goal_edit' %}" class="w-100 mt-3 btn btn-warning mt-5">تغییر کالری روزانه هدف</a>
-                
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{ goal_percent }}%" aria-valuenow="{{ total_cal_today }}" aria-valuemin="0" aria-valuemax="{{ user_goal }}">
+                        {{ goal_percent }}%
+                    </div>
+                </div>
+                    <a href="{% url 'goal_edit' %}" class="w-100 mt-3 btn btn-warning mt-5"><i class="bi bi-pencil-square"></i> تغییر کالری روزانه هدف</a> {% endcomment %}
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container mt-5 w-100">
-        <div class="card shadow">
-            <div class="card-body">
-                <h3 class="text-center">وعده های غذایی امروز شما</h3>
-                <a href="{% url 'foodeaten_new' %}" class="w-100 mt-3 btn btn-success">افزودن وعده غذایی جدید</a>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">نام غذا</th>
-                            <th scope="col">وعده غذایی</th>
-                            <th scope="col">تاریخ</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for food_eaten in FoodEatenList %}
+        <div class="container mt-5 w-100">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="text-center">وعده های غذایی امروز شما</h3>
+                    <a href="{% url 'foodeaten_new' %}" class="w-100 mt-3 btn btn-success"><i class="bi bi-plus-square"></i> افزودن وعده غذایی جدید</a>
+                    <table class="table table-striped table-hover">
+                        <thead>
                             <tr>
-                                <td>{{ food_eaten.name }}</td>
-                                <td>{{ food_eaten.meal }}</td>
-                                <td>{{ food_eaten.date }}</td>
-                                <td>
-                                    <form method="post">
-                                        {% csrf_token %}
-                                        <a href="{% url 'foodeaten_delete' food_eaten.pk %}"
-                                           class="btn btn-danger"><i class="bi bi-trash"></i></a>
-                                    </form>
-                                </td>
+                                <th scope="col">نام غذا</th>
+                                <th scope="col">وعده غذایی</th>
+                                <th scope="col">تاریخ</th>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {% for food_eaten in FoodEatenList %}
+                                <tr>
+                                    <td>{{ food_eaten.name }}</td>
+                                    <td>{{ food_eaten.meal }}</td>
+                                    <td>{{ food_eaten.date }}</td>
+                                    <td>
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <a href="{% url 'foodeaten_delete' food_eaten.pk %}"
+                                               class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-{% endblock content %}
+    {% endblock content %}
