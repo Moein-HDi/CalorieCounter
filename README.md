@@ -16,4 +16,5 @@ A django project for a calorie counter web application
 ## Screenshots
 ![image](https://user-images.githubusercontent.com/60918091/211655967-62a823f6-2929-4b9c-b1d1-eadaac71c573.png)
 ![image](https://user-images.githubusercontent.com/60918091/211656038-2aec5e6b-1a98-43e6-97a1-ec467e41993c.png)
-![image](https://user-images.githubusercontent.com/60918091/211656164-ae543a70-069f-46f9-a537-d6383f898989.png)
+![image](https://user-images.githubusercontent.com/60918091/211757965-7a4aba0c-bffe-4b36-ab3d-a8f31a1997e9.png)
+
