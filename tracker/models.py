@@ -19,7 +19,7 @@ class food_eaten(models.Model):
         ('نهار', 'نهار'),
         ('شام', 'شام'),
     )
-    name = models.ForeignKey(fooditem, on_delete=models.DO_NOTHING)
+    name = models.ForeignKey(fooditem, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
     meal = models.CharField(max_length=50, choices=meals)
     person = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

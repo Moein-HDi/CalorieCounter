@@ -1,37 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container mt-5 w-100">
+    <div class="container mt-4 w-100">
         <div class="card shadow-sm">
             <div class="card-body">
-                <h3 class="text-center mb-4">
-                    خوش آمدید، {{ user.username }}! <i class="bi bi-emoji-smile"></i>
-                </h3>
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">
+                        <strong>{{ user.username }} عزیز، به پنل کاربری خود خوش آمدید!</strong>
+                    </h4>
+                    در اینجا می توانید وعده های غذایی خود را اضافه کنید و آمار رژیم غذایی خود را مشاهده کنید.
+                </div>
                 <div class="row row-cols-1 row-cols-md-3 text-center">
                     <div class="col d-flex flex-column">
-                        <div class="card m-2 rounded-3 shadow-sm flex-grow-1">
+                        <div class="card rounded-3 shadow-sm flex-grow-1 mt-3">
                             <div class="card-header py-3">
                                 <h5 class="my-0 fw-normal">کل کالری مصرف شده شما تا اکنون</h5>
                             </div>
                             <div class="card-body">
-                                    <i class="bi bi-bar-chart-fill fs-2"></i>
+                                <i class="bi bi-bar-chart-fill fs-2"></i>
                                 <h1 class="card-title pricing-card-title">
-                                    {{ cal_alltime }}<small class="text-muted fw-light"> کالری</small>
+                                    {{ cal_alltime }}<small class="text-muted fw-light">کالری</small>
                                 </h1>
+                                <p>مجموع کالری تمام غذا هایی که تا کنون مصرف کرده اید</p>
                             </div>
                         </div>
                     </div>
                     <div class="col d-flex flex-column">
-                        <div class="card m-2 rounded-3 shadow-sm flex-grow-1">
+                        <div class="card rounded-3 shadow-sm flex-grow-1 mt-3">
                             <div class="card-header py-3">
                                 <h5 class="my-0 fw-normal">کالری مصرف شده امروز شما</h5>
                             </div>
                             <div class="card-body">
-                                    <i class="bi bi-star-fill fs-2"></i>
+                                <i class="bi bi-star-fill fs-2"></i>
                                 <h1 class="card-title pricing-card-title">
                                     {{ total_cal_today }}<small class="text-muted fw-light">/{{ user_goal }}</small>
                                 </h1>
-                                <div class="progress my-3 shadow-sm" style="height: 2rem;" dir="ltr">
-                                    <div class="progress-bar progress-bar-striped bg-success"
+                                <div class="progress my-3 shadow-sm rounded-5"
+                                     style="height: 2rem"
+                                     dir="ltr">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated rounded-5  {% if goal_percent > 100 %}bg-danger{% else %}bg-success{% endif %}"
                                          role="progressbar"
                                          style="width: {{ goal_percent }}%"
                                          aria-valuenow="{{ total_cal_today }}"
@@ -47,37 +53,29 @@
                         </div>
                     </div>
                     <div class="col d-flex flex-column">
-                        <div class="card m-2 rounded-3 shadow-sm flex-grow-1">
+                        <div class="card rounded-3 shadow-sm flex-grow-1 mt-3">
                             <div class="card-header py-3">
                                 <h5 class="my-0 fw-normal">کالری مصرفی امروز شما در مقایسه با دیروز</h5>
                             </div>
                             <div class="card-body">
-                                    <i class="bi bi-graph-up-arrow fs-2"></i>                              
+                                <i class="bi bi-graph-up-arrow fs-2"></i>
                                 <h1 class="card-title pricing-card-title">
-                                    <span dir="ltr">{{ cal_compared }}</span><small class="text-muted fw-light"> کالری</small>
+                                    <span dir="ltr">{{ cal_compared }}</span><small class="text-muted fw-light">کالری</small>
                                 </h1>
+                                <p>اختلاف کالری های مصرفی امروز شما با دیروز</p>
                             </div>
                         </div>
                     </div>
-                    {% comment %} <h3 class="text-center">
-                    خوش آمدید، {{ user.username }}! <i class="bi bi-emoji-smile"></i>
-                </h3>
-                <div class="text-muted text-center mt-5">کالری مصرفی امروز شما:</div>
-                <h1 class="text-center blackbold">{{ total_cal_today }}/{{ user_goal }}</h1>
-                <div class="progress" style="height: 2rem;" dir="ltr">
-                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{ goal_percent }}%" aria-valuenow="{{ total_cal_today }}" aria-valuemin="0" aria-valuemax="{{ user_goal }}">
-                        {{ goal_percent }}%
-                    </div>
-                </div>
-                    <a href="{% url 'goal_edit' %}" class="w-100 mt-3 btn btn-warning mt-5"><i class="bi bi-pencil-square"></i> تغییر کالری روزانه هدف</a> {% endcomment %}
                 </div>
             </div>
         </div>
-        <div class="container mt-5 w-100">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h3 class="text-center">وعده های غذایی امروز شما</h3>
-                    <a href="{% url 'foodeaten_new' %}" class="w-100 mt-3 btn btn-success"><i class="bi bi-plus-square"></i> افزودن وعده غذایی جدید</a>
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h3 class="text-center">وعده های غذایی امروز شما</h3>
+                <a href="{% url 'foodeaten_new' %}" class="w-100 mt-3 btn btn-success"><i class="bi bi-plus-square"></i> افزودن وعده غذایی جدید</a>
+                <div class="table-wrapper-scroll-y mt-2"
+                     style="height: 300px;
+                            overflow: auto">
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>

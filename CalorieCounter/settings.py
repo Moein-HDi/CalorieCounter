@@ -20,7 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-l8_eq2i322q9bfeu7ns-qa$&6@c$1%7_0u3hnwz&bdm@x_=+n4'
+SECRET_KEY = ''
+                                
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,7 +83,8 @@ WSGI_APPLICATION = 'CalorieCounter.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'data/db.sqlite3', #for production
+        #'NAME': BASE_DIR / 'db.sqlite3', #for test
     }
 }
 

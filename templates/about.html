@@ -1,22 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div class="container mt-5 w-50">
-        <div class="card shadow">
+    <div class="container mt-4 w-75">
+        <div class="card shadow-sm rounded-5 py-5">
             <div class="card-body text-center">
-                <img src="{% static 'assets/hero.svg' %}"
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 698.68 236.69"
                      class="d-block mx-lg-auto img-fluid"
                      alt="caloriecounter"
                      loading="lazy"
-                     width="700"
-                     height="500"/></br>
-                <h2><i class="bi-file-person"></i> درباره من</h2>
-                
-                    <strong>ساخته شده توسط:</strong> معین هدایتی
-                </br>
-                    <strong>استاد راهنما:</strong> دکتر آقا بزرگی
-                
-            </div>
+                     width="150"
+                     height="70"
+                     style="display: block;
+                            margin: auto">
+                    <defs><style>.cls-1{fill:#0f0f0f;}</style></defs>
+                    <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_2-2" data-name="Layer 2">
+                    <path class="cls-1" d="M580.34,0h-187L281.11,194.8H119v0h-1.64a76.45,76.45,0,0,1,1-152.89H256.59L231.93,85,218.8,107.94h48.26L328.79,0H119.87c-.51,0-1,0-1.53,0-1,0-2.1,0-3.15.05h0l-2.58.1c-1.73.09-3.44.21-5.15.36s-3.4.34-5.08.57A118.43,118.43,0,0,0,5.71,82Q4.16,86.7,3,91.61a.38.38,0,0,0,0,.1c-.67,2.87-1.22,5.75-1.66,8.68a118.24,118.24,0,0,0-1.36,18c0,.92,0,1.83,0,2.73,0,.54,0,1.1.05,1.64.06,1.38.12,2.73.22,4.09.06.76.11,1.51.19,2.25a.33.33,0,0,0,0,.14c.09.83.17,1.66.26,2.47a1.73,1.73,0,0,0,0,.32c.08.73.17,1.46.27,2.17,0,.24.07.49.1.73.1.73.21,1.45.32,2.18q.44,2.59.94,5.14c.35,1.72.74,3.45,1.18,5.16s.9,3.36,1.39,5c.25.83.51,1.66.78,2.47.59,1.85,1.24,3.68,1.93,5.49a118.36,118.36,0,0,0,109.13,76.33,4.57,4.57,0,0,0,.74,0c.26,0,.53,0,.78,0,.51,0,1,0,1.53,0H305.31L417.56,41.89H580.34a76.46,76.46,0,0,1,0,152.91H441.56l37.78-66.05H431.08L369.36,236.67h211.5A118.33,118.33,0,0,0,580.34,0Z"/>
+                    </g>
+                    </g>
+                </svg>
+            </br>
+            <p class="lh-1">
+                made with <i class="bi bi-heart-fill" style="color: teal"></i> and a lot of <i class="bi bi-cup-hot-fill" style="color: brown"></i> by
+            </p>
+            <h1 class="lh-1">Moein Hedayati</h1>
+            <p>ساخته شده توسط معین هدایتی</p>
+            <a class="text-muted lh-1 fs-2" href="https://github.com/Moein-HDi"><i class="bi bi-github" style="color: teal;"></i></a>
         </div>
     </div>
+</div>
 {% endblock content %}

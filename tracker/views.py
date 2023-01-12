@@ -87,6 +87,8 @@ def ProfileView(request):
     cal_compared = int(total_cal_today - total_cal_yesterday)
     if cal_compared > 0:
         cal_compared_to_yesterday = "+%d" %cal_compared
+    else:
+        cal_compared_to_yesterday = cal_compared
     
     goal_percent = int(total_cal_today/user_goal*100)
     context = {

@@ -1,0 +1,9 @@
+{
+    "app": "moeinhdi-caloriecounter",
+    "disks": [
+        {
+            "name": "sqlite",
+            "mountTo": "data"
+        }
+    ]
+}

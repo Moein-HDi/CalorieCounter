@@ -5,6 +5,13 @@
         <div class="card shadow">
             <div class="card-body">
                 <h3 class="text-center">افزودن وعده غذایی جدید</h3>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    در صورتی که غذایی برای شما نمایش داده نمی شود، یک بار به لیست غذای خود مراجعه کنید
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                </div>
                 <form method="post">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
