@@ -21,6 +21,11 @@
                         {{ form.name.errors }}
                     </div>
                     <div class="form-group">
+                        <label for="{{ form.number.id_for_label }}">تعداد:</label>
+                        {{ form.number|add_class:"form-control mb-2" }}
+                        {{ form.number.errors }}
+                    </div>
+                    <div class="form-group">
                         <label for="{{ form.meal.id_for_label }}">وعده غذایی:</label>
                         {{ form.meal|add_class:"form-control mb-2" }}
                         {{ form.meal.errors }}

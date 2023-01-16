@@ -80,16 +80,20 @@
                         <thead>
                             <tr>
                                 <th scope="col">نام غذا</th>
+                                <th scope="col">تعداد</th>
                                 <th scope="col">وعده غذایی</th>
                                 <th scope="col">تاریخ</th>
+                                <th scope="col">مجموع کالری</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for food_eaten in FoodEatenList %}
                                 <tr>
                                     <td>{{ food_eaten.name }}</td>
+                                    <td>{{ food_eaten.number }}</td>
                                     <td>{{ food_eaten.meal }}</td>
                                     <td>{{ food_eaten.date }}</td>
+                                    <td>{% widthratio food_eaten.name.calorie 1 food_eaten.number %}</td>
                                     <td>
                                         <form method="post">
                                             {% csrf_token %}

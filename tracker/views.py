@@ -77,11 +77,11 @@ def ProfileView(request):
     total_cal_today = 0
     total_cal_yesterday = 0
     for food in UserFoodEatenList:
-        total_cal_alltime+= food.name.calorie
+        total_cal_alltime+= (food.name.calorie * food.number)
     for food in TodayFoodEatenList:
-        total_cal_today += food.name.calorie
+        total_cal_today += (food.name.calorie * food.number)
     for food in YesterdayFoodEatenList:
-        total_cal_yesterday += food.name.calorie
+        total_cal_yesterday += (food.name.calorie * food.number)
     
 
     cal_compared = int(total_cal_today - total_cal_yesterday)
@@ -112,9 +112,10 @@ def FoodEatenCreateView(request):
         if form.is_valid():
             name = form.cleaned_data.get('name')
             meal = form.cleaned_data.get('meal')
+            number = form.cleaned_data.get('number')
             person = form.cleaned_data.get('person')
             eatfood = food_eaten.objects.create(
-                name=name, meal=meal, person=person)
+                name=name, number=number, meal=meal, person=person)
             eatfood.save()
             return redirect('/manage/profile')
         else:
