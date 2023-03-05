@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'tracker',
     #3rd party
     'widget_tweaks',
+    'jalali_date',
 ]
 
 MIDDLEWARE = [

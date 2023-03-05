@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load jalali_tags %}
 {% block content %}
     <div class="container mt-4 w-100">
         <div class="card shadow-sm">
@@ -21,6 +22,7 @@
                                     {{ cal_alltime }}<small class="text-muted fw-light">کالری</small>
                                 </h1>
                                 <p>مجموع کالری تمام غذا هایی که تا کنون مصرف کرده اید</p>
+                                <span class="badge text-bg-dark">تاریخ عضویت شما: {{ request.user.date_joined|to_jalali:'%y/%m/%d - %H:%M:%S' }}</span>
                             </div>
                         </div>
                     </div>
@@ -92,7 +94,7 @@
                                     <td>{{ food_eaten.name }}</td>
                                     <td>{{ food_eaten.number }}</td>
                                     <td>{{ food_eaten.meal }}</td>
-                                    <td>{{ food_eaten.date }}</td>
+                                    <td>{{ food_eaten.date|to_jalali }}</td>
                                     <td>{% widthratio food_eaten.name.calorie 1 food_eaten.number %}</td>
                                     <td>
                                         <form method="post">
