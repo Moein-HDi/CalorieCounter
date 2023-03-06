@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import date
 from datetime import timedelta
+from .filters import *
 
 
 @login_required(login_url='login')
@@ -139,3 +140,10 @@ def EditGoalView(request):
         return redirect('/manage/profile')
 
     return render(request, 'goal_edit.html')
+
+
+@login_required(login_url='login')
+def FoodHistoryView(request):
+    UserFoodEatenList = food_eaten.objects.filter(person=request.user)
+    f = fooditemFilter(request.GET, queryset=UserFoodEatenList)
+    return render(request, 'foodhistory.html', {'filter': f})

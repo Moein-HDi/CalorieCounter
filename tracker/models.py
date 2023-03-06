@@ -1,5 +1,7 @@
 from django.db import models
 from accounts.models import CustomUser
+from jalali_date import date2jalali
+from django_jalali.db import models as jmodels
 
 
 class fooditem(models.Model):
@@ -21,7 +23,7 @@ class food_eaten(models.Model):
     )
     name = models.ForeignKey(fooditem, on_delete=models.CASCADE)
     number = models.IntegerField(default=1)
-    date = models.DateField(auto_now_add=True)
+    date = jmodels.jDateField(auto_now_add=True)
     meal = models.CharField(max_length=50, choices=meals)
     person = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
