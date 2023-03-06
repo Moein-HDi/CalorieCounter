@@ -8,11 +8,11 @@ A django project for a calorie counter web application
  - users can also set daily calorie goal.
 
 ## Requirements
-`django==4.1.5
-django-widget-tweaks==1.4.12
-django-jalali-date==1.0.1
-django_jalali==6.0.1
-django-filter==22.1`
+`django==4.1.5`
+`django-widget-tweaks==1.4.12`
+`django-jalali-date==1.0.1`
+`django_jalali==6.0.1`
+`django-filter==22.1`
 
 ## Screenshots
 ![image](https://user-images.githubusercontent.com/60918091/211655967-62a823f6-2929-4b9c-b1d1-eadaac71c573.png)
