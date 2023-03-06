@@ -2,3 +2,4 @@ django==4.1.5
 django-widget-tweaks==1.4.12
 django-jalali-date==1.0.1
 django_jalali==6.0.1
+django-filter==22.1
